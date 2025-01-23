@@ -1,32 +1,49 @@
 import { StatusBar } from 'expo-status-bar';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+            name = "Inicio"
+            component = {PantallaInicio}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+const PantallaInicio = ({navigation}) => {
+  return(
     <View style={styles.container}>
-      <Image
-        source={require('./assets/Logos/Logo.png')} 
-        style={styles.image}
-      />
-      <Text style={styles.logo}>cuni</Text>
+    <Image
+      source={require('./assets/Logos/Logo.png')} 
+      style={styles.image}
+    />
+    <Image
+      source={require('./assets/Logos/CUNI 1.png')} 
+    />
 
-      <Image
-        source={require('./assets/Logos/CUNI 1.png')} 
-      />
+    <Text style={styles.description}>
+      ¡Prepararte nunca fue tan fácil!
+    </Text>
 
-      <Text style={styles.description}>
-        ¡Prepararte nunca fue tan fácil!
-      </Text>
+    <TouchableOpacity style={styles.button}>
+      <Text style={styles.buttonText}>Empezar</Text>
+    </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Empezar</Text>
-      </TouchableOpacity>
-
-      <Text style={styles.link}>
-        Ya tengo una cuenta,{' '}
-        <Text style={styles.linkText}>Ingresar</Text>
-      </Text>
-    </View>
+    <Text style={styles.link}>
+      Ya tengo una cuenta,{' '}
+      <Text style={styles.linkText}>Ingresar</Text>
+    </Text>
+  </View>
   );
 }
 
@@ -44,12 +61,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 150,
+    height: 75,
     marginBottom: 20,
   },
   description: {
-    fontSize: 18,
+    fontSize: 24,
+    fontFamily: 'Poppins',
+    fontWeight: 'bold',
     textAlign: 'center',
     color: '#fff',
     marginBottom: 30,
